@@ -17,7 +17,7 @@ export default class Server {
         if(!db.isConected){
             await db.conectarMongoDB();
         }
-    }    
+    }
 
     middlewares() {
         this.app.use(cors());
@@ -26,17 +26,17 @@ export default class Server {
     }
 
     routes() {
-        this.app.use(this.miapi, indexRoutes);
+        this.app.use(this.miapi, indexRoutes);  // Usa las rutas definidas en 'index.routes.js'
         this.app.use((req, res) =>{
             res.status(404).json({
                 msg: 'Ruta no encontrada'
             });
-        });        
+        });
     }
-    
+
     listen() {
         this.app.listen(this.port, () => {
-            console.log('Servidor corriendo en puerto', `${this.port}` .red);
-        })
+            console.log('Servidor corriendo en puerto', `${this.port}`);
+        });
     }
 }
